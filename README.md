@@ -1,2 +1,2 @@
 # nebula
-A simple game prototype
+A simple game prototype made in ncurses.
