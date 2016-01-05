@@ -3,5 +3,5 @@
 void drawBorder();
 void drawScreen();
 void initialize();
-void drawMenu(WINDOW *menu_win, char** names, int count, int highlight);
+void drawMenu(WINDOW *menu_win, int y, int x, char** names, int count, int highlight);
 void tinyScreenError();

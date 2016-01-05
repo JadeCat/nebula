@@ -54,17 +54,17 @@ void drawScreen()
 	refresh();
 }
 
-void drawMenu(WINDOW *menu_win, char** names, int count, int highlight)
+void drawMenu(WINDOW *menu_win, int y, int x, char** names, int count, int highlight)
 {
 	for(int i=0; i<count; i++)
 		if(i == highlight)
 		{
 			wattron(menu_win, A_REVERSE);
-			mvwaddstr(menu_win,i,0,names[i]);
+			mvwaddstr(menu_win,y+i,x,names[i]);
 			wattroff(menu_win, A_REVERSE);
 		}
 		else
-			mvwaddstr(menu_win,i,0,names[i]);
+			mvwaddstr(menu_win,y+i,x,names[i]);
 }
 
 void tinyScreenError()

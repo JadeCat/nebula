@@ -13,15 +13,31 @@ int main (int argc, char **argv)
 	setlocale(LC_ALL, "");
 	initialize();
 
-	drawScreen();
-
 	char c;
 	
 	char *menu[] = {"Start",
+					"Continue",
 					"About",
 					"Quit"};
+	
 	int highlight = 0;
-	int count = 3;
+	int count = 4;
+
+	char *title[] = {"           #         #",
+					 "           #         #",
+					 " ###  ###  ###  #  # #  ###",
+					 " #  # #  # #  # #  # # #  #",
+					 " #  # #### #  # #  # # #  #",
+					 " #  # #    #  # #  # # # ##",
+					 " #  #  ###  ##   ### #  # #",
+					 "",
+					 "############################"};
+	
+	int titleCount = 9;
+
+	drawScreen();
+	drawMenu(stdscr, LINES/2 -7, COLS/2 -14, title, titleCount, -1);
+	drawMenu(stdscr, LINES/2 +3, COLS/2 -3, menu, count, highlight);
 
 	while((c = getch()) != 'q')
 	{
@@ -34,13 +50,16 @@ int main (int argc, char **argv)
 			highlight = (highlight +1) % count;
 			break;
 		case 13: // for some reason KEY_ENTER is 'W'. Yes, really.
-			if(2 == highlight)
+			if(3 == highlight)
 				finish(0);
+			break;
+		case (char)KEY_RESIZE:
 			break;
 		}
 		drawScreen();
 
-		drawMenu(stdscr, menu, count, highlight);
+		drawMenu(stdscr, LINES/2 -7, COLS/2 -14, title, titleCount, -1);
+		drawMenu(stdscr, LINES/2 +3, COLS/2 -3, menu, count, highlight);
 	}
 
 	finish(0);
